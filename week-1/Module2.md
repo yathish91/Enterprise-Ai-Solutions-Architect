@@ -106,3 +106,77 @@ Schedule a meeting.
 Trigger a Flow.
 
 These actions are performed through tools, APIs, or workflows.
+
+
+### Layer 6: The LLM
+
+This is where GPT, Claude, Gemini, or another model comes in.
+
+The LLM is responsible for:
+
+Understanding natural language.
+Summarizing information.
+Drafting responses.
+Explaining complex topics.
+Generating code.
+Reasoning over the information it's given.
+
+The LLM is not the entire application—it's one component.
+
+## Putting It All Together
+
+Imagine this request:
+
+"Summarize the Acme account."
+
+Here's what happens:
+
+Step 1
+
+The user clicks Summarize in Salesforce.
+
+Step 2
+
+The AI Agent receives the request.
+
+Step 3
+
+The Agent retrieves:
+
+Account details
+Open Opportunities
+Recent Cases
+Activities
+Knowledge Articles
+Step 4
+
+The Agent sends that information to the LLM.
+
+Step 5
+
+The LLM generates a concise summary.
+
+Step 6
+
+The summary is displayed back in Salesforce.
+
+Notice something important:
+
+The LLM never connected directly to Salesforce. The Agent handled the retrieval and orchestration.
+
+
+## Architect's Checklist
+
+Whenever you're designing an AI solution, ask yourself:
+
+Who is the user?
+What business problem are they trying to solve?
+What enterprise data is needed?
+What systems must the AI connect to?
+What actions should the AI perform?
+Where does the LLM add value?
+What security and governance controls are required?
+
+## Why shouldn't we simply give GPT direct access to our Salesforce database?
+I wouldn't give GPT direct access to Salesforce because enterprise systems require strong security, governance, and access control. The AI should only retrieve data the current user is authorized to access, and only the data needed for the task. Business logic such as filtering, permissions, and transactions should remain in Salesforce, while the LLM focuses on reasoning and language generation. This approach improves security, reduces cost, minimizes hallucinations by grounding responses in enterprise data, and keeps the solution scalable and auditable."
+
