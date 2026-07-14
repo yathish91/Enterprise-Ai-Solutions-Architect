@@ -1,4 +1,4 @@
-# Learning from Module 1 & 2 
+# Learning from Day 1
 
 ✅ AI vs. ML vs. LLM
 
