@@ -1,6 +1,6 @@
 # Topic: Embeddings & Vector Databases (The Foundation of Enterprise AI Search)
 
-### Goal: By the end of today, you'll understand why companies use vector databases instead of keyword search and how this powers enterprise AI assistants.
+### Goal: Understand why companies use vector databases instead of keyword search and how this powers enterprise AI assistants.
 
 ## Part 1  – Why LLMs Need More Than Prompting
 
@@ -170,4 +170,3 @@ Architecture You'll See in Interviews
                LLM
                 │
             Response
-            
