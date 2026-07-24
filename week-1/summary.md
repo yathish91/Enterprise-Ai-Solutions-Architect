@@ -1,184 +1,166 @@
-# Learning Week 1
+# Week 1 Summary — How Enterprise AI Works
 
-Week 1 Learning Objective
+> **The one question Week 1 answers:** *"What actually happens between a user asking a
+> question and the AI giving a safe, correct answer?"*
 
-The goal of Week 1 was to answer one question:
+By the end of this week, you should be able to explain that whole journey in plain words.
+Here's the short version of each day.
 
-"How does Enterprise AI actually work?"
+---
 
-By the end of the week, you should be able to explain the complete flow of an enterprise AI solution from a user's question to the final response.
+## Day 1 — What is Enterprise AI?
 
-## Day 1 – Introduction to Enterprise AI
+**In simple words:** Enterprise AI means using AI to solve real business problems — not just
+building a chatbot for fun.
 
-What you learned
-What Enterprise AI is
-Difference between consumer AI and enterprise AI
-Why companies are investing heavily in AI
-Role of an Enterprise AI Solutions Architect
-Key takeaway
+- Consumer AI answers general questions. Enterprise AI works with a company's own data,
+  systems, and rules.
+- Companies invest in it to save time, cut costs, and make better decisions.
+- **Takeaway:** Enterprise AI is about connecting AI to the business, safely.
 
-Enterprise AI is about solving business problems using AI while integrating with enterprise systems, not just building chatbots.
+---
 
-## Day 2 – LLMs, AI Agents & Human-in-the-Loop
+## Day 2 — LLMs, AI Agents & Human-in-the-Loop
 
-What you learned
-What an LLM is
-Why an LLM is not a database
-Difference between LLM and AI Agent
-Salesforce as the source of truth
-Human-in-the-Loop (HITL)
-Architecture
+**In simple words:** An LLM is the "thinking" part. An agent is the part that also "does"
+things.
 
+- An **LLM** is very good with language, but it is **not a database** — it doesn't *know*
+  your company's live data.
+- The company's real records (in a system like a CRM) are the **source of truth**, not the
+  model's memory.
+- A quick way to remember it:
+  - **LLM = Thinks**
+  - **AI Agent = Thinks + Acts**
+- **Human-in-the-Loop (HITL):** for risky actions, a person checks before anything final
+  happens. Example: the AI can *suggest* closing a support case, but a human approves it.
+
+```text
 User
-   │
-   ▼
+ │
+ ▼
 AI Agent
-   │
-   ├── Salesforce
-   ├── Knowledge Base
-   └── LLM
+ ├── Business data (source of truth)
+ ├── Knowledge base
+ └── LLM
+```
 
-Biggest lesson
+---
 
-LLM = Thinks
-AI Agent = Thinks + Acts
+## Day 3 — Tool Calling & MCP
 
-Real-world example
+**In simple words:** The AI doesn't hold your data — it *calls tools* to fetch or change it.
 
-You also discussed why AI should not automatically close customer support cases. Instead, it should recommend closure and let a human verify the outcome before taking the final action. This is a great example of Human-in-the-Loop in practice.
+- **Tools** are actions the AI can trigger, like "look up this customer" or "update this
+  record."
+- **MCP (Model Context Protocol)** is a shared standard so AI can connect to many tools the
+  same way — think of it as **USB-C for AI**: one common plug instead of a different cable
+  for every device.
+- **Takeaway:** The agent stays smart and general; the tools do the real work of touching
+  systems.
 
-## Day 3 – Tool Calling & MCP
+---
 
-What you learned
+## Day 4 — Retrieval-Augmented Generation (RAG)
 
-    What tools are
-    Tool calling
-    API integrations
-    MCP (Model Context Protocol)
+**In simple words:** Look it up first, then answer.
 
-Key idea
-        The AI Agent doesn't contain enterprise data. It calls tools to retrieve or update information.
+- An LLM can't reliably answer company-specific questions on its own, so we **fetch the
+  relevant information first** and hand it to the model.
+- The AI **retrieves** the right records or documents, then the LLM writes the answer using
+  them.
+- **RAG vs. fine-tuning:** RAG *gives the model the facts at question time*; fine-tuning
+  *retrains the model's style/skills*. For fresh, company-specific facts, RAG is usually the
+  answer.
+- **Golden rule:** **Search first → Generate second.**
 
-### MCP
+```text
+User → AI Agent → Retrieve information → LLM → Answer
+```
 
-You learned that MCP is not just about connecting to multiple servers.
+---
 
-Instead, MCP provides a standard protocol that lets AI models communicate with many enterprise tools in a consistent way.
+## Day 5 — Prompt Engineering
 
-Think of it as:
+**In simple words:** A good prompt is more than a question — it's clear instructions plus
+context plus rules.
 
-    USB-C for AI integrations.
+A strong enterprise prompt combines four things:
+1. **Clear instructions** — what to do.
+2. **Context** — the retrieved data to use.
+3. **Safety rules (guardrails)** — what *not* to do (e.g., don't guess, don't leak private
+   info).
+4. **Output format** — how the answer should look (e.g., structured/JSON).
 
-Instead of creating a different connector for every tool, systems expose a common interface.
+```text
+System Prompt  →  User Prompt  →  Retrieved Context  →  LLM  →  Response
+```
 
-## Day 4 – Retrieval-Augmented Generation (RAG)
+---
 
-What you learned
-    Why enterprises use RAG
-    Why LLMs cannot answer company-specific questions on their own
-    Difference between RAG and Fine-tuning
-    Retrieving business records vs. knowledge documents
+## The Complete Picture
 
-Enterprise flow
-    User
-    │
-    ▼
-    AI Agent
-    │
-    ▼
-    Retrieve Information
-    │
-    ▼
-    LLM
-    │
-    ▼
-    Answer
+Putting all five days together, here's the full enterprise AI flow:
 
-Biggest lesson : Search first → Generate second
-
-The LLM doesn't search enterprise systems. The AI Agent retrieves relevant records and documents, then provides that context to the LLM.
-
-## Day 5 – Prompt Engineering
-
-What you learned
-    What prompts are
-    System Prompt
-    User Prompt
-    Context
-    Prompt Templates
-    Prompt Chaining
-    Guardrails
-    Structured Outputs
-    Salesforce Prompt Builder concepts
-
-Enterprise prompt flow
-    System Prompt
-        │
-    User Prompt
-        │
-    Retrieved Context
-        │
-        ▼
-       LLM
-        │
-        ▼
-    Response
-
-Biggest lesson - A good prompt isn't just a question. It combines:
-
-Clear instructions
-Enterprise context
-Safety rules
-Expected output format
-The Complete Enterprise AI Flow
-
-By the end of Week 1, you can explain this complete architecture:
-
+```text
                 User
                   │
                   ▼
-            User Prompt
+             User Prompt
                   │
                   ▼
-             AI Agent
+              AI Agent
                   │
       ┌───────────┼────────────┐
       ▼           ▼            ▼
- Salesforce   Knowledge Base   APIs
+ Business data  Knowledge   APIs / Tools
       │           │            │
       └───────────┼────────────┘
                   ▼
           Retrieved Context
                   │
                   ▼
-          System Prompt
+           System Prompt
                   │
                   ▼
                  LLM
                   │
                   ▼
-      Structured Response
+        Structured Response
                   │
                   ▼
-      Human-in-the-Loop (if required)
+        Human-in-the-Loop (if needed)
                   │
                   ▼
-           Final Business Action
+          Final Business Action
+```
 
-This is the high-level architecture you'll see in many enterprise AI solutions, regardless of the vendor.
+This same shape shows up in most enterprise AI systems, no matter which vendor builds them.
 
-## Important Concepts 
-Concept	                                                   What it means
----------------------------------------------------------------------------------------
-LLM                                             	Reasons over and generates language.
-AI Agent	                                        Plans tasks and uses tools to perform actions.
-Tool Calling	                                    Lets the agent interact with enterprise systems.
-MCP	                                                Standard protocol for connecting AI to tools and data sources.
-RAG	                                                Retrieves trusted enterprise information before generation.
-System Prompt	                                    Defines the AI's role and behavior.
-User                                                Prompt	The user's request.
-Context	                                            Retrieved business data and documents.
-Guardrails	                                        Safety and compliance rules.
-Structured Output	                                Machine-readable responses (often JSON).
-Human-in-the-Loop	                                Human approval for sensitive business decisions.
-Your Progress
+---
+
+## Key Terms (one line each)
+
+| Term | Meaning |
+|---|---|
+| **LLM** | Understands and generates language. |
+| **AI Agent** | Plans tasks and uses tools to get things done. |
+| **Tool Calling** | Lets the agent read from and act on real systems. |
+| **MCP** | A standard way to connect AI to many tools ("USB-C for AI"). |
+| **RAG** | Fetches trusted information before the model answers. |
+| **System Prompt** | Sets the AI's role and rules. |
+| **User Prompt** | The user's actual question. |
+| **Context** | The retrieved data the answer is based on. |
+| **Guardrails** | Safety and compliance rules. |
+| **Structured Output** | A machine-readable answer (often JSON). |
+| **Human-in-the-Loop** | A person approves important actions. |
+
+---
+
+## What's Next
+
+**Week 2** goes one level deeper into the machinery that makes this work well:
+embeddings, vector databases, chunking, prompt engineering for the enterprise, agents, and
+how to evaluate and guard the whole system.
+
+➡️ Start with **[Week 2 – Day 1: Embeddings & Vector Databases](../week-2/Day1-Embeddings_&_Vector_Databases.md)**
